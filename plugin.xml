@@ -153,10 +153,10 @@
     <source-file src="src/android/res/values/umeng_socialize_strings.xml" target-dir="res/values"/>
     <source-file src="src/android/res/values/umeng_socialize_style.xml" target-dir="res/values"/>
 
-    <source-file src="src/android/libs/httpmime-4.2.4.jar" target-dir="libs"/>
-    <source-file src="src/android/libs/SocialSDK_WeiXin_1.jar" target-dir="libs"/>
-    <source-file src="src/android/libs/SocialSDK_WeiXin_2.jar" target-dir="libs"/>
-    <source-file src="src/android/libs/umeng_social_sdk.jar" target-dir="libs"/>
+    <lib-file src="src/android/libs/httpmime-4.2.4.jar"/>
+    <lib-file src="src/android/libs/SocialSDK_WeiXin_1.jar"/>
+    <lib-file src="src/android/libs/SocialSDK_WeiXin_2.jar"/>
+    <lib-file src="src/android/libs/umeng_social_sdk.jar"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
