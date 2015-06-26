@@ -7,7 +7,7 @@
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="UMengShare">
-        <param name="android-package" value="com.mobishift.plugins.umengshare.UMengShare"/>
+        <param name="android-package" value="com.mobishift.plugins.umengshare"/>
       </feature>
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest">
@@ -32,7 +32,7 @@
             android:value="YOUR_UMENG_APPKEY" >
         </meta-data>
     </config-file>
-    <source-file src="src/android/UMengShare.java" target-dir="src/com/mobishift/plugins/umengshare/UMengShare"/>
+    <source-file src="src/android/UMengShare.java" target-dir="src/com/mobishift/plugins/umengshare"/>
 
     <source-file src="src/android/res/anim/umeng_socialize_fade_in.xml" target-dir="res/anim" />
     <source-file src="src/android/res/anim/umeng_socialize_fade_out.xml" target-dir="res/anim" />
