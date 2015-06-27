@@ -11,36 +11,25 @@
       </feature>
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest">
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-        <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+      <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.INTERNET" />
     </config-file>
     <config-file parent="/manifest/application" target="AndroidManifest.xml">
-        <activity
-            android:name="com.umeng.socialize.view.ShareActivity"
-            android:configChanges="orientation|keyboard"
-            android:launchMode="singleTask"
-            android:noHistory="true"
-            android:theme="@style/Theme.UMDialog"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
-        </activity>
-
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="YOUR_UMENG_APPKEY" >
-        </meta-data>
+      <activity            android:name="com.umeng.socialize.view.ShareActivity"            android:configChanges="orientation|keyboard"            android:launchMode="singleTask"            android:noHistory="true"            android:theme="@style/Theme.UMDialog"            android:windowSoftInputMode="stateVisible|adjustResize" >
+      </activity>
+      <meta-data            android:name="UMENG_APPKEY"            android:value="YOUR_UMENG_APPKEY" >
+      </meta-data>
     </config-file>
     <source-file src="src/android/UMengShare.java" target-dir="src/com/mobishift/plugins/umengshare"/>
-
     <source-file src="src/android/res/anim/umeng_socialize_fade_in.xml" target-dir="res/anim" />
     <source-file src="src/android/res/anim/umeng_socialize_fade_out.xml" target-dir="res/anim" />
     <source-file src="src/android/res/anim/umeng_socialize_shareboard_animation_in.xml" target-dir="res/anim" />
     <source-file src="src/android/res/anim/umeng_socialize_shareboard_animation_out.xml" target-dir="res/anim" />
     <source-file src="src/android/res/anim/umeng_socialize_slide_in_from_bottom.xml" target-dir="res/anim" />
     <source-file src="src/android/res/anim/umeng_socialize_slide_out_from_bottom.xml" target-dir="res/anim" />
-
     <source-file src="src/android/res/drawable/umeng_socialize_action_back.xml" target-dir="res/drawable"/>
     <source-file src="src/android/res/drawable/umeng_socialize_action_back_normal.png" target-dir="res/drawable"/>
     <source-file src="src/android/res/drawable/umeng_socialize_action_back_selected.png" target-dir="res/drawable"/>
@@ -114,7 +103,6 @@
     <source-file src="src/android/res/drawable/umeng_socialize_wxcircle.png" target-dir="res/drawable"/>
     <source-file src="src/android/res/drawable/umeng_socialize_wxcircle_gray.png" target-dir="res/drawable"/>
     <source-file src="src/android/res/drawable/umeng_socialize_x_button.png" target-dir="res/drawable"/>
-
     <source-file src="src/android/res/drawable-hdpi/umeng_socialize_light_bar_bg_pad.9.png" target-dir="res/drawable-hdpi"/>
     <source-file src="src/android/res/drawable-hdpi/umeng_socialize_nav_bar_bg_pad.9.png" target-dir="res/drawable-hdpi"/>
     <source-file src="src/android/res/drawable-hdpi/umeng_socialize_oauth_check_off.png" target-dir="res/drawable-hdpi"/>
@@ -122,7 +110,6 @@
     <source-file src="src/android/res/drawable-hdpi/umeng_socialize_share_music.png" target-dir="res/drawable-hdpi"/>
     <source-file src="src/android/res/drawable-hdpi/umeng_socialize_share_pic.png" target-dir="res/drawable-hdpi"/>
     <source-file src="src/android/res/drawable-hdpi/umeng_socialize_share_video.png" target-dir="res/drawable-hdpi"/>
-
     <source-file src="src/android/res/layout/umeng_bak_at_list.xml" target-dir="res/layout"/>
     <source-file src="src/android/res/layout/umeng_bak_at_list_item.xml" target-dir="res/layout"/>
     <source-file src="src/android/res/layout/umeng_bak_platform_item_simple.xml" target-dir="res/layout"/>
@@ -143,16 +130,13 @@
     <source-file src="src/android/res/layout/umeng_socialize_shareboard_item.xml" target-dir="res/layout"/>
     <source-file src="src/android/res/layout/umeng_socialize_simple_spinner_item.xml" target-dir="res/layout"/>
     <source-file src="src/android/res/layout/umeng_socialize_titile_bar.xml" target-dir="res/layout"/>
-
     <source-file src="src/android/res/layout-sw550dp-large/umeng_socialize_full_alert_dialog.xml" target-dir="res/layout-sw550dp-large"/>
     <source-file src="src/android/res/layout-sw550dp-large/umeng_socialize_oauth_dialog.xml" target-dir="res/layout-sw550dp-large"/>
     <source-file src="src/android/res/layout-sw550dp-large/umeng_socialize_post_share.xml" target-dir="res/layout-sw550dp-large"/>
     <source-file src="src/android/res/layout-sw550dp-large/umeng_socialize_titile_bar.xml" target-dir="res/layout-sw550dp-large"/>
-
     <source-file src="src/android/res/values/umeng_socialize_colors.xml" target-dir="res/values"/>
     <source-file src="src/android/res/values/umeng_socialize_strings.xml" target-dir="res/values"/>
     <source-file src="src/android/res/values/umeng_socialize_style.xml" target-dir="res/values"/>
-
     <lib-file src="src/android/libs/httpmime-4.2.4.jar"/>
     <lib-file src="src/android/libs/SocialSDK_WeiXin_1.jar"/>
     <lib-file src="src/android/libs/SocialSDK_WeiXin_2.jar"/>
@@ -165,5 +149,31 @@
       </feature>
     </config-file>
     <source-file src="src/ios/UMengShare.m"/>
+    <source-file src="src/ios/UMSocial_Sdk_4.2.3/libUMSocial_Sdk_4.2.3.a" framework="true"/>
+
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocial.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialAccountManager.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialBar.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialConfig.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialControllerService.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialControllerServiceComment.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialData.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialDataService.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialSnsData.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialSnsPlatformManager.h" />
+    <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialSnsService.h" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/SocialSDKXib/UMSCommentDetailController.xib" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/SocialSDKXib/UMSCommentInputController.xib" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/SocialSDKXib/UMSCommentInputControlleriPad.xib" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/SocialSDKXib/UMSLoginViewController.xib" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/SocialSDKXib/UMSShareListController.xib" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/SocialSDKXib/UMShareEditViewController.xib" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/SocialSDKXib/UMShareEditViewControlleriPad.xib" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/SocialSDKXib/UMSnsAccountViewController.xib" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/UMSocialSDKResourcesNew.bundle" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/en.lproj" />
+    <resource-file src="src/ios/UMSocial_Sdk_4.2.3/zh-Hans.lproj" />
+
+
   </platform>
 </plugin>
