@@ -3,6 +3,7 @@
 #import <Cordova/CDV.h>
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
+#import "UMSocialSinaSSOHandler.h"
 
 static BOOL isInit = false;
 
@@ -55,6 +56,8 @@ static BOOL isInit = false;
     if(!isInit){
         CDVViewController* viewController = (CDVViewController*)self.viewController;
         [UMSocialData setAppKey:[viewController.settings objectForKey:@"umengappkey"]];
+
+        [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     }
 }
 
@@ -63,6 +66,5 @@ static BOOL isInit = false;
          NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
     }
 }
-
 
 @end
