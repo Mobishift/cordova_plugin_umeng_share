@@ -150,7 +150,12 @@
     </config-file>
     <source-file src="src/ios/UMengShare.m"/>
     <source-file src="src/ios/UMSocial_Sdk_4.2.3/libUMSocial_Sdk_4.2.3.a" framework="true"/>
+    <source-file src="src/ios/libSocialWechat.a" framework="true"/>
+    <source-file src="src/ios/libWeChatSDK.a" framework="true"/>
 
+    <header-file src="src/ios/UMSocialWechatHandler.h" />
+    <header-file src="src/ios/WXApi.h" />
+    <header-file src="src/ios/WXApiObject.h" />
     <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocial.h" />
     <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialAccountManager.h" />
     <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialBar.h" />

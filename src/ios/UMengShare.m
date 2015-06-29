@@ -1,17 +1,20 @@
 /********* UMengShare.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
+#import "UMSocial.h"
+
+static BOOL isInit = false;
 
 @interface UMengShare : CDVPlugin {
   // Member variables go here.
 }
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
+- (void)share:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation UMengShare
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command
+- (void)share:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* echo = [command.arguments objectAtIndex:0];
@@ -23,6 +26,12 @@
     }
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)initShare{
+    if(!isInit){
+        
+    }
 }
 
 @end
