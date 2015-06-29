@@ -24,6 +24,7 @@ import org.json.JSONObject;
 public class UMengShare extends CordovaPlugin {
     private static final String SHARE = "share";
     private static boolean isInit = false;
+    private static boolean shareWechat = false;
     private UMSocialService controller;
 
     @Override
@@ -46,13 +47,20 @@ public class UMengShare extends CordovaPlugin {
     }
 
     private void share(String title, String content, String image, String url){
-        WeiXinShareContent weiXinShareContent = new WeiXinShareContent();
-        weiXinShareContent.setShareContent(content);
-        weiXinShareContent.setTitle(title);
-        weiXinShareContent.setShareImage(new UMImage(this.cordova.getActivity(), image));
-        weiXinShareContent.setTargetUrl(url);
+        if(shareWechat){
+            WeiXinShareContent weiXinShareContent = new WeiXinShareContent();
+            weiXinShareContent.setShareContent(content);
+            weiXinShareContent.setTitle(title);
+            weiXinShareContent.setShareImage(new UMImage(this.cordova.getActivity(), image));
+            weiXinShareContent.setTargetUrl(url);
 
-        controller.setShareMedia(weiXinShareContent);
+            controller.setShareMedia(weiXinShareContent);
+        }
+
+        controller.setShareContent(content);
+        controller.setShareImage(new UMImage(this.cordova.getActivity(), image));
+
+
         controller.openShare(this.cordova.getActivity(), false);
     }
 
@@ -68,7 +76,9 @@ public class UMengShare extends CordovaPlugin {
 
                 umwxHandler = new UMWXHandler(this.cordova.getActivity(), appId, appSecret);
                 umwxHandler.addToSocialSDK();
+                shareWechat = true;
             }else{
+                shareWechat = false;
                 controller.getConfig().removePlatform(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE);
             }
             controller.getConfig().removePlatform(SHARE_MEDIA.SINA, SHARE_MEDIA.TENCENT);

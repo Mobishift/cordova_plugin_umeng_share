@@ -18,9 +18,9 @@
       <uses-permission android:name="android.permission.INTERNET" />
     </config-file>
     <config-file parent="/manifest/application" target="AndroidManifest.xml">
-      <activity            android:name="com.umeng.socialize.view.ShareActivity"            android:configChanges="orientation|keyboard"            android:launchMode="singleTask"            android:noHistory="true"            android:theme="@style/Theme.UMDialog"            android:windowSoftInputMode="stateVisible|adjustResize" >
+      <activity android:name="com.umeng.socialize.view.ShareActivity" android:configChanges="orientation|keyboard"            android:launchMode="singleTask" android:noHistory="true" android:theme="@style/Theme.UMDialog"  android:windowSoftInputMode="stateVisible|adjustResize" >
       </activity>
-      <meta-data            android:name="UMENG_APPKEY"            android:value="YOUR_UMENG_APPKEY" >
+      <meta-data android:name="UMENG_APPKEY" android:value="YOUR_UMENG_APPKEY" >
       </meta-data>
     </config-file>
     <source-file src="src/android/UMengShare.java" target-dir="src/com/mobishift/plugins/umengshare"/>
@@ -141,6 +141,7 @@
     <lib-file src="src/android/libs/SocialSDK_WeiXin_1.jar"/>
     <lib-file src="src/android/libs/SocialSDK_WeiXin_2.jar"/>
     <lib-file src="src/android/libs/umeng_social_sdk.jar"/>
+    <lib-file src="src/android/libs/SocialSDK_Sina.jar"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
@@ -160,14 +161,43 @@
             </dict>
         </array>
     </config-file>
+    <config-file target="*/*-Info.plist" parent="CFBundleURLTypes">
+        <array>
+            <dict>
+                <key>CFBundleURLName</key>
+                <string>umeng_sina</string>
+                <key>CFBundleURLSchemes</key>
+                <array>
+                    <string>SINA_APP_KEY</string>
+                </array>
+            </dict>
+        </array>
+    </config-file>
     <source-file src="src/ios/UMengShare.m"/>
-    <source-file src="src/ios/UMSocial_Sdk_4.2.3/libUMSocial_Sdk_4.2.3.a" framework="true"/>
-    <source-file src="src/ios/libSocialWechat.a" framework="true"/>
-    <source-file src="src/ios/libWeChatSDK.a" framework="true"/>
 
-    <header-file src="src/ios/UMSocialWechatHandler.h" />
-    <header-file src="src/ios/WXApi.h" />
-    <header-file src="src/ios/WXApiObject.h" />
+    <!-- 微信SDK -->
+    <source-file src="src/ios/Wechat/libSocialWechat.a" framework="true"/>
+    <source-file src="src/ios/Wechat/libWeChatSDK.a" framework="true"/>
+    <header-file src="src/ios/Wechat/UMSocialWechatHandler.h" />
+    <header-file src="src/ios/Wechat/WXApi.h" />
+    <header-file src="src/ios/Wechat/WXApiObject.h" />
+
+    <!-- 微博SDK-->
+    <source-file src="src/ios/SinaSSO/libSocialSinaSSO.a" framework="true"/>
+    <source-file src="src/ios/SinaSSO/libWeiboSDK.a" framework="true"/>
+    <header-file src="src/ios/SinaSSO/UMSocialSinaSSOHandler.h"/>
+    <header-file src="src/ios/SinaSSO/WBHttpRequest+WeiboShare.h"/>
+    <header-file src="src/ios/SinaSSO/WBHttpRequest+WeiboToken.h"/>
+    <header-file src="src/ios/SinaSSO/WBHttprequest+WeiboUser.h"/>
+    <header-file src="src/ios/SinaSSO/WBHttpRequest.h"/>
+    <header-file src="src/ios/SinaSSO/WBSDKBasicButton.h"/>
+    <header-file src="src/ios/SinaSSO/WBSDKCommentButton.h"/>
+    <header-file src="src/ios/SinaSSO/WeiboSDK.h"/>
+    <header-file src="src/ios/SinaSSO/WeiboUser.h"/>
+    <resource-file src="src/ios/SinaSSO/WeiboSDK.bundle"/>
+
+    <!-- 友盟SDK-->
+    <source-file src="src/ios/UMSocial_Sdk_4.2.3/libUMSocial_Sdk_4.2.3.a" framework="true"/>
     <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocial.h" />
     <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialAccountManager.h" />
     <header-file src="src/ios/UMSocial_Sdk_4.2.3/Header/UMSocialBar.h" />
