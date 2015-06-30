@@ -68,7 +68,7 @@ public class UMengShare extends CordovaPlugin {
 
     private void init(){
         if (!isInit) {
-            shareWechat = webView.getPreferences().getBoolen('sharewechat', false);
+            shareWechat = webView.getPreferences().getBoolean("sharewechat", false);
             String appId = webView.getPreferences().getString("wechatappid", "");
             String appSecret = webView.getPreferences().getString("wechatappsecret", "");
             if (shareWechat && !appId.equals("") && !appId.equals("")) {
@@ -84,7 +84,7 @@ public class UMengShare extends CordovaPlugin {
                 controller.getConfig().removePlatform(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE);
             }
 
-            shareSina = webView.getPreferences().getBoolen('sharesina', false);
+            shareSina = webView.getPreferences().getBoolean("sharesina", false);
             if(shareSina){
 
             }else{
