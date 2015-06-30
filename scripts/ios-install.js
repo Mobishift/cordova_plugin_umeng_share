@@ -11,6 +11,7 @@ module.exports = function(context){
     var path = context.requireCordovaModule('path'),
         fs = context.requireCordovaModule('fs'),
         projectRoot = context.opts.projectRoot,
+        ConfigParser = context.requireCordovaModule('cordova-lib').configparser, 
         config = new ConfigParser(path.join(projectRoot, 'config.xml')),
         appName = config.name() || 'CordovaApp';
 
