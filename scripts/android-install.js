@@ -20,7 +20,7 @@ module.exports = function(context){
     var files = fs.readdirSync(libsDir);
 
     for(var i = 0; i < files.length; i++){
-        if(files.indexOf('libammsdk') >= 0){
+        if(files[i].indexOf('libammsdk') >= 0){
             var file = path.join(libsDir, files[i]);
             fs.unlinkSync(file);
         }
