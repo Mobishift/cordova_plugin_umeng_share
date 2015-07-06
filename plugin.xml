@@ -145,6 +145,7 @@
     <lib-file src="src/android/libs/SocialSDK_Sina.jar"/>
   </platform>
   <platform name="ios">
+    <hook type="before_plugin_install" src="scripts/ios-before-install.js">
     <hook type="after_plugin_install" src="scripts/ios-install.js" />
     <hook type="before_plugin_uninstall" src="scripts/ios-uninstall.js" />
 
@@ -224,7 +225,6 @@
     <resource-file src="src/ios/UMSocial_Sdk_4.2.3/UMSocialSDKResourcesNew.bundle" />
     <resource-file src="src/ios/UMSocial_Sdk_4.2.3/en.lproj" />
     <resource-file src="src/ios/UMSocial_Sdk_4.2.3/zh-Hans.lproj" />
-
 
   </platform>
 </plugin>
