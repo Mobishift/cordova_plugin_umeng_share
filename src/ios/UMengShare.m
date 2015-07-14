@@ -35,7 +35,6 @@ static BOOL isInit = false;
         [shareNames addObject:UMShareToWechatTimeline];
     }
 
-    [UMSocialConfig hiddenNotInstallPlatforms:shareNames];
     NSString* imageUrl = [shareModel objectForKey:@"image"];
     UIImage* image = nil;
     if(imageUrl != nil){
