@@ -9,6 +9,7 @@ import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMVideo;
 import com.umeng.socialize.media.UMusic;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 import org.apache.cordova.CordovaPlugin;
@@ -54,8 +55,14 @@ public class UMengShare extends CordovaPlugin {
             weiXinShareContent.setTitle(title);
             weiXinShareContent.setShareImage(new UMImage(this.cordova.getActivity(), image));
             weiXinShareContent.setTargetUrl(url);
-
             controller.setShareMedia(weiXinShareContent);
+
+            CircleShareContent circleShareContent = new CircleShareContent();
+            circleShareContent.setShareContent(content);
+            circleShareContent.setTitle(title);
+            circleShareContent.setShareImage(new UMImage(this.cordova.getActivity(), image));
+            circleShareContent.setTargetUrl(url);
+            controller.setShareMedia(circleShareContent);
         }
 
         controller.setShareContent(content);
