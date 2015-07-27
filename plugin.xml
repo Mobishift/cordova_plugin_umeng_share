@@ -145,8 +145,8 @@
     <lib-file src="src/android/libs/SocialSDK_Sina.jar"/>
   </platform>
   <platform name="ios">
+    <hook type="after_plugin_add" src="scripts/ios-after-add.js" />
     <hook type="before_plugin_install" src="scripts/ios-before-install.js" />
-    <hook type="after_plugin_install" src="scripts/ios-after-install.js" />
     <hook type="before_plugin_uninstall" src="scripts/ios-uninstall.js" />
 
     <config-file parent="/*" target="config.xml">
