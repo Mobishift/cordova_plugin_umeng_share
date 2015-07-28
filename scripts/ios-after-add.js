@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-exports.module = function(context){
+module.exports = function(context){
     // console.info('init umeng share plugin ...');
 
     var path = context.requireCordovaModule('path'),
@@ -11,7 +11,7 @@ exports.module = function(context){
         config = new ConfigParser(path.join(projectRoot, 'config.xml'));
 
     var pluginXml = path.join(projectRoot, 'plugins', 'com.mobishift.plugins.umengshare', 'plugin.xml');
-    var content = fs.file.readFileSync(pluginXml, {encoding: 'utf8'});
+    var content = fs.readFileSync(pluginXml, {encoding: 'utf8'});
     if(!config.getPreference('sharewechat') && content.indexOf('WX_APP_ID') >= 0){
         console.info('remove wechat share');
         content = content.replace('<config-file target="\*/\*-Info.plist" parent="CFBundleURLTypes">\s*<array>\s*<dict>\s*<key>CFBundleURLName</key>\s*<string>weixin</string>\s*<key>CFBundleURLSchemes</key>\s*<array>\s*<string>WX_APP_ID</string>\s*</array>\s*</dict>\s*</array>\s*</config-file>', '');
@@ -22,5 +22,5 @@ exports.module = function(context){
         content = content.replace('<config-file target="\*/\*-Info.plist" parent="CFBundleURLTypes">\s*<array>\s*<dict>\s*<key>CFBundleURLName</key>\s*<string>umeng_sina</string>\s*<key>CFBundleURLSchemes</key>\s*<array>\s*<string>SINA_APP_KEY</string>\s*</array>\s*</dict>\s*</array>\s*</config-file>', '');
     }
 
-    fs.file.writeFileSync(pluginXml, content);
+    fs.writeFileSync(pluginXml, content);
 };
