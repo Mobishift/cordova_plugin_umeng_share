@@ -1,30 +1,26 @@
 #!/usr/bin/env node
 'use strict';
 
-module.exports = function(context){
-    if(context.opts.cordova.platforms.indexOf('ios') === -1){
-        console.info('IOS platform has not been added.');
-        return;
-    }
+exports.module = function(context){
+    // console.info('init umeng share plugin ...');
 
-    console.info('setting umeng share plugin ...');
     var path = context.requireCordovaModule('path'),
         fs = context.requireCordovaModule('fs'),
         projectRoot = context.opts.projectRoot,
-        ConfigParser = context.requireCordovaModule('cordova-lib').configparser, 
-        config = new ConfigParser(path.join(projectRoot, 'config.xml')),
-        appName = config.name() || 'CordovaApp';
+        ConfigParser = context.requireCordovaModule('cordova-lib').configparser,
+        config = new ConfigParser(path.join(projectRoot, 'config.xml'));
 
-    var targetFile = path.join(projectRoot, 'platforms', 'ios', appName, 'Classes', 'AppDelegate.m');
-
-    var content = fs.readFileSync(targetFile, {encoding: 'utf8'});
-    if(content.indexOf('UMSocialSnsService.h') === -1){
-        content = content.replace('#import <Cordova/CDVPlugin.h>', '#import <Cordova/CDVPlugin.h>\n#import "UMSocialSnsService.h"');
-
-        content = content.substring(0, content.lastIndexOf('@end'));
-        content += '\n- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{\n    return [UMSocialSnsService handleOpenURL:url];\n}\n\n@end';
-
-        fs.writeFileSync(targetFile, content);
+    var pluginXml = path.join(projectRoot, 'plugins', 'com.mobishift.plugins.umengshare', 'plugin.xml');
+    var content = fs.file.readFileSync(pluginXml, {encoding: 'utf8'});
+    if(!config.getPreference('sharewechat') && content.indexOf('WX_APP_ID') >= 0){
+        console.info('remove wechat share');
+        content = content.replace('<config-file target="\*/\*-Info.plist" parent="CFBundleURLTypes">\s*<array>\s*<dict>\s*<key>CFBundleURLName</key>\s*<string>weixin</string>\s*<key>CFBundleURLSchemes</key>\s*<array>\s*<string>WX_APP_ID</string>\s*</array>\s*</dict>\s*</array>\s*</config-file>', '');
     }
 
+    if(!config.getPreference('sharesina') && content.indexOf('SINA_APP_KEY') >= 0){
+        console.info('remove sina share');
+        content = content.replace('<config-file target="\*/\*-Info.plist" parent="CFBundleURLTypes">\s*<array>\s*<dict>\s*<key>CFBundleURLName</key>\s*<string>umeng_sina</string>\s*<key>CFBundleURLSchemes</key>\s*<array>\s*<string>SINA_APP_KEY</string>\s*</array>\s*</dict>\s*</array>\s*</config-file>', '');
+    }
+
+    fs.file.writeFileSync(pluginXml, content);
 };
