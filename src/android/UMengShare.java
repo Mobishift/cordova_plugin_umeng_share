@@ -1,5 +1,6 @@
 package com.mobishift.plugins.umengshare;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -19,11 +20,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 /**
  * This class echoes a string called from JavaScript.
  */
 public class UMengShare extends CordovaPlugin {
     private static final String SHARE = "share";
+    private static final String WECHAT_FIREND = "wechat";
+    private static final String WECHAT_TIMELINE = "timeline";
+    private static final String SINA = "sina";
+
     private static boolean isInit = false;
     private static boolean shareWechat = false;
     private static boolean shareSina = false;
@@ -36,6 +43,7 @@ public class UMengShare extends CordovaPlugin {
         init();
         if (action.equals(SHARE)) {
             JSONObject json = new JSONObject(args.getString(0));
+            setSharePlatform(json);
             share(json.getString("title"), json.getString("content"), json.getString("image"), json.getString("url"));
 //            String content = args.getString(0);
 //            String imageUrl = args.getString(1);
@@ -72,6 +80,47 @@ public class UMengShare extends CordovaPlugin {
         controller.openShare(this.cordova.getActivity(), false);
     }
 
+    private void setSharePlatform(JSONObject jsonObject) {
+        if (jsonObject.has("platforms")) {
+            ArrayList<String> platforms = new ArrayList<String>();
+            try {
+                JSONArray jsonArray = jsonObject.getJSONArray("platforms");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    platforms.add(jsonArray.getString(i));
+                }
+            } catch (JSONException ex) {
+                Log.e("UMengShare", ex.getMessage());
+            }
+            if(shareWechat){
+                if(platforms.contains(WECHAT_FIREND)){
+                    controller.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN);
+                }else{
+                    controller.getConfig().removePlatform(SHARE_MEDIA.WEIXIN);
+                }
+                if(platforms.contains(WECHAT_TIMELINE)){
+                    controller.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN_CIRCLE);
+                }else{
+                    controller.getConfig().removePlatform(SHARE_MEDIA.WEIXIN_CIRCLE);
+                }
+            }
+            if(shareSina && platforms.contains(SINA)){
+                controller.getConfig().setPlatforms(SHARE_MEDIA.SINA);
+            }else{
+                controller.getConfig().removePlatform(SHARE_MEDIA.SINA);
+            }
+        }else{
+            if(shareWechat){
+                controller.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE);
+            }else{
+                controller.getConfig().removePlatform(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE);
+            }
+            if(shareSina){
+                controller.getConfig().setPlatforms(SHARE_MEDIA.SINA);
+            }else{
+                controller.getConfig().removePlatform(SHARE_MEDIA.SINA);
+            }
+        }
+    }
 
     private void init(){
         if (!isInit) {
@@ -93,7 +142,7 @@ public class UMengShare extends CordovaPlugin {
 
             shareSina = webView.getPreferences().getBoolean("sharesina", false);
             if(shareSina){
-
+                //TODO:set share sina platform
             }else{
                 controller.getConfig().removePlatform(SHARE_MEDIA.SINA);
             }

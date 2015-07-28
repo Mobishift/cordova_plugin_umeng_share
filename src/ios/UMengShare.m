@@ -16,6 +16,9 @@ static BOOL isInit = false;
 
 @implementation UMengShare
 
+static NSString* const WECHAT_FRIEND = @"wechat";
+static NSString* const WECHAT_TIMELINE = @"timeline";
+
 - (void)share:(CDVInvokedUrlCommand*)command
 {
     [self initShare];
@@ -23,7 +26,7 @@ static BOOL isInit = false;
     NSString* echo = [command.arguments objectAtIndex:0];
     NSData* shareData = [echo dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary* shareModel = [NSJSONSerialization JSONObjectWithData:shareData options:NSJSONReadingMutableLeaves error:nil];
-
+    
     CDVViewController* viewController = (CDVViewController*)self.viewController;
     NSString* wechatAppId = [viewController.settings objectForKey:@"wechatappid"];
     NSString* wechatAppSecret = [viewController.settings objectForKey:@"wechatappsecret"];
@@ -31,8 +34,18 @@ static BOOL isInit = false;
     NSMutableArray* shareNames = [NSMutableArray array];
     if(wechatAppId != nil && wechatAppSecret != nil){
         [UMSocialWechatHandler setWXAppId:wechatAppId appSecret:wechatAppSecret url:[shareModel objectForKey:@"url"]];
-        [shareNames addObject:UMShareToWechatSession];
-        [shareNames addObject:UMShareToWechatTimeline];
+        if([shareModel objectForKey:@"platforms"] != nil){
+            NSArray* platforms = [shareModel objectForKey:@"platforms"];
+            if([platforms containsObject:WECHAT_FRIEND]){
+                [shareNames addObject:UMShareToWechatSession];
+            }
+            if([platforms containsObject:WECHAT_TIMELINE]){
+                [shareNames addObject:UMShareToWechatTimeline];
+            }
+        }else{
+            [shareNames addObject:UMShareToWechatSession];
+            [shareNames addObject:UMShareToWechatTimeline];
+        }
     }
 
     NSString* imageUrl = [shareModel objectForKey:@"image"];
