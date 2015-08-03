@@ -14,12 +14,12 @@ module.exports = function(context){
     var content = fs.readFileSync(pluginXml, {encoding: 'utf8'});
     if(!config.getPreference('sharewechat') && content.indexOf('WX_APP_ID') >= 0){
         console.info('remove wechat share');
-        content = content.replace('<config-file target="\*/\*-Info.plist" parent="CFBundleURLTypes">\s*<array>\s*<dict>\s*<key>CFBundleURLName</key>\s*<string>weixin</string>\s*<key>CFBundleURLSchemes</key>\s*<array>\s*<string>WX_APP_ID</string>\s*</array>\s*</dict>\s*</array>\s*</config-file>', '');
+        content = content.replace(/<config-file target="\*\/\*-Info.plist" parent="CFBundleURLTypes">\s*<array>\s*<dict>\s*<key>CFBundleURLName<\/key>\s*<string>weixin<\/string>\s*<key>CFBundleURLSchemes<\/key>\s*<array>\s*<string>WX_APP_ID<\/string>\s*<\/array>\s*<\/dict>\s*<\/array>\s*<\/config-file>/, '');
     }
 
     if(!config.getPreference('sharesina') && content.indexOf('SINA_APP_KEY') >= 0){
         console.info('remove sina share');
-        content = content.replace('<config-file target="\*/\*-Info.plist" parent="CFBundleURLTypes">\s*<array>\s*<dict>\s*<key>CFBundleURLName</key>\s*<string>umeng_sina</string>\s*<key>CFBundleURLSchemes</key>\s*<array>\s*<string>SINA_APP_KEY</string>\s*</array>\s*</dict>\s*</array>\s*</config-file>', '');
+        content = content.replace(/<config-file target="\*\/\*-Info.plist" parent="CFBundleURLTypes">\s*<array>\s*<dict>\s*<key>CFBundleURLName<\/key>\s*<string>umeng_sina<\/string>\s*<key>CFBundleURLSchemes<\/key>\s*<array>\s*<string>SINA_APP_KEY<\/string>\s*<\/array>\s*<\/dict>\s*<\/array>\s*<\/config-file>/, '');
     }
 
     fs.writeFileSync(pluginXml, content);
