@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin id="com.mobishift.plugins.umengshare" version="0.0.1" xmlns:android="http://schemas.android.com/apk/res/android" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+<plugin id="com.mobishift.plugins.umengshare" version="0.1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns="http://apache.org/cordova/ns/plugins/1.0">
   <name>UMengShare</name>
   <js-module name="UMengShare" src="www/UMengShare.js">
     <clobbers target="cordova.plugins.UMengShare"/>
@@ -166,7 +166,7 @@
             </dict>
         </array>
     </config-file>
-    <config-file target="*/*-Info.plist" parent="">
+    <config-file target="*/*-Info.plist" parent="LSApplicationQueriesSchemes">
         <array>
             <string>weixin</string>
             <string>wechat</string>
