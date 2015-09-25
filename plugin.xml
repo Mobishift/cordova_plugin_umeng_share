@@ -166,6 +166,17 @@
             </dict>
         </array>
     </config-file>
+    <config-file target="*/*-Info.plist" parent="">
+        <array>
+            <string>weixin</string>
+            <string>wechat</string>
+        </array>
+        <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
+        </dict>
+    </config-file>
     <config-file target="*/*-Info.plist" parent="CFBundleURLTypes">
         <array>
             <dict>
